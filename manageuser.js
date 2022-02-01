@@ -6,16 +6,13 @@ let verifypassword = "";
 let passwordRegEx = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{6,40})/;
 
 function setusername() {
-    userName = $("#username").val();
+    userName = $("username").val();
 }
 
 function setuserpassword() {
-    password = $("#password").val();
+    password = $("#oneTimePassword").val();
     var valid = passwordRegEx.exec(password);
-    if (!valid) {
-        alert('Must be 6 digits, upper, lower, number, and symbol');
     }
-}
 
 function setverifypassword() {
     verifypassword = $("#verifypassword").val();
@@ -52,8 +49,8 @@ function userlogin() {
     setusername();
     $.ajax({
         type: 'POST',
-        url: 'https://dev.stedi.me/login',
-        data: JSON.stringify({ userName, password }),
+        url: 'https://dev.stedi.me/twofactorlogin/'+userName,
+        data: JSON.stringify({userName, oneTimePassword}),
         success: function (data) {
             window.location.href = "/timer.html#" + data;//add the token to the url
         },
