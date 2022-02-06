@@ -6,7 +6,7 @@ function setusername(){
     userName = $("#username").val();
     $.ajax({
         type: 'POST',
-        url: 'https://dev.stedi.me/twofactorlogin/'+userName,
+        url: 'https://dev.stedi.me/twofactorlogin/'+,
         contentType: "application/text",
         dataType: 'text'
     });
